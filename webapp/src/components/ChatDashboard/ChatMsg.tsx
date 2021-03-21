@@ -5,7 +5,7 @@ import MsgAvatar from '@/components/ChatDashboard/MsgAvatar';
 interface ChatMsgProps {
   username: string;
   message: string;
-  className: string;
+  className?: string;
 }
 
 const ChatMsg: React.FC<ChatMsgProps> = ({ username, message, className }) => {

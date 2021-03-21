@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface MsgAvatarProps {
-  className: string;
+  className?: string;
   username: string;
 }
 
