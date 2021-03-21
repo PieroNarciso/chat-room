@@ -16,7 +16,7 @@ const PBtn: React.FC<
   return (
     <button
       className={
-        'px-3 py-2 uppercase font-medium rounded focus:outline-none shadow' +
+        'px-3 py-2 uppercase font-medium rounded focus:outline-none' +
         ' ' +
         className
       }

@@ -8,7 +8,7 @@ const PInput: React.FC<
 > = ({ className, type, ...props }) => {
   return (
     <input
-      className={'w-full rounded' + ' ' + className}
+      className={'w-full rounded bg-gray-300 border-0 focus:ring-2' + ' ' + className}
       type={type ? type : 'text'}
       {...props}
     />
