@@ -1,18 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import MsgSendBtn from '@/components/MessageDashboard/MsgSendBtn';
-import MsgInput from '@/components/MessageDashboard/MsgInput';
-import LoginForm from '@/components/Form/LoginForm';
+import LoginView from '@/views/LoginView';
+import ChatView from '@/views/ChatView';
 
 function App() {
-
   return (
-    <div className="App">
-      <MsgSendBtn></MsgSendBtn>
-      <MsgInput type="text" placeholder="Type a message" />
-      <LoginForm />
-    </div>
-  )
+    <BrowserRouter>
+      <div className="App">
+        <Route path="/" exact component={LoginView} />
+        <Route path="/login" exact component={LoginView} />
+        <Route path="/chat" exact component={ChatView} />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
