@@ -6,6 +6,12 @@
     "outDir": "./dist", 
     "removeComments": true,
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
 
     "strict": true,
     "esModuleInterop": true,

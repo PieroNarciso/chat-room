@@ -18,7 +18,7 @@ module.exports = {
   'rules': {
     '@typescript-eslint/indent': [
       'error',
-      2
+      2 
     ],
     'linebreak-style': [
       'error',
@@ -35,7 +35,7 @@ module.exports = {
   },
   'overrides': [
     {
-      'files': ['**/*.controller.ts', 'auth.ts'],
+      'files': ['./**/controllers/*.ts'],
       'rules': {
         '@typescript-eslint/explicit-module-boundary-types': 'off'
       }
