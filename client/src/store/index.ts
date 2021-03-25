@@ -3,7 +3,7 @@ import { IState } from '@/interfaces';
 
 const initialState: IState = {
   username: 'Guess',
-  messages: [{ username: 'User1', msg: 'Hola' }],
+  messages: [],
 };
 
 const messagesReducer = (state = initialState, action: reducerActions) => {

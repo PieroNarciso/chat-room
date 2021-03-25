@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { useSelector } from 'react-redux';
 
 import MsgInput from '@/components/ChatDashboard/MsgInput';
 import MsgSendBtn from '@/components/ChatDashboard/MsgSendBtn';
-import {IMessage, IState} from '@/interfaces';
+import { IMessage, IState } from '@/interfaces';
 
 interface ChatActionsProps {
-  addMessage: (payload: IMessage) => void;
-  username: string;
+  onSendMessage: (message: IMessage) => void;
   className?: string;
 }
 
-const ChatActions: React.FC<ChatActionsProps> = ({ username, addMessage, className }) => {
+const ChatActions: React.FC<ChatActionsProps> = ({
+  className,
+  onSendMessage,
+}) => {
+  // Setup Store `username`
+  const { username } = useSelector((state: IState) => ({
+    username: state.username,
+  }));
+  
+  // Handle User Input
   const [msgInput, setMsgInput] = useState('');
   const msgInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMsgInput(event.target.value);
@@ -20,7 +27,8 @@ const ChatActions: React.FC<ChatActionsProps> = ({ username, addMessage, classNa
 
   const sendMsg = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addMessage({ username: username, msg: msgInput })
+    const data = { username: username, msg: msgInput };
+    onSendMessage(data);
     setMsgInput('');
   };
 
@@ -34,21 +42,4 @@ const ChatActions: React.FC<ChatActionsProps> = ({ username, addMessage, classNa
   );
 };
 
-const mapStateToProps = (state: IState) => {
-  return {
-    username: state.username,
-  };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    addMessage: (payload: IMessage) => {
-      dispatch({
-        type: 'ADD_MESSAGE',
-        payload,
-      });
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChatActions);
+export default ChatActions;
