@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
 import { io } from '@/index';
 
-import { IMessage } from '@/api/interfaces';
+import { IMessage } from '@/interfaces';
 
 
 const msgSocket = io.of('messages');

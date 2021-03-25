@@ -1,4 +1,2 @@
-import { msgSocket } from '@/api/sockets/MessageSocket';
-import { Namespace } from 'socket.io';
+export * from '@/sockets/MessageSocket';
 
-export default (): Namespace => msgSocket;

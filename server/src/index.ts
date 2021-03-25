@@ -34,12 +34,8 @@ export const io = new Server(server, {
     methods: ['GET', 'POST'],
   },
 });
-const socket = io.of('messages');
 
-socket.on('connection', () => {
-  console.log('Hello');
-  socket.send('Hello');
-});
+import '@/sockets';
 
 server.listen(PORT, () => {
   console.log(`Server started in port ${PORT}`);
