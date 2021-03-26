@@ -9,14 +9,14 @@ interface ChatFlowProps {
 }
 
 const ChatFlow = React.forwardRef<HTMLDivElement, ChatFlowProps>(({ className }, ref) => {
-  const { messages } = useSelector((state: IState) => { 
-    return { messages: state.messages }
+  const { messages, username } = useSelector((state: IState) => { 
+    return { messages: state.messages, username: state.username }
   })
 
   return (
     <div className={'overflow-auto' + ' ' + className} ref={ref}>
       {messages.map((msg, index) => (
-        <ChatMsg key={index} username={msg.username} message={msg.msg} />
+        <ChatMsg key={index} username={msg.username} message={msg.msg} left={msg.username !== username} />
       ))}
     </div>
   );

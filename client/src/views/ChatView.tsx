@@ -1,16 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
 import { io, Socket } from 'socket.io-client';
+import {useHistory} from 'react-router';
 
 import ChatHeader from '@/components/ChatDashboard/ChatHeader';
 import ChatFlow from '@/components/ChatDashboard/ChatFlow';
 import ChatActions from '@/components/ChatDashboard/ChatActions';
 import { IMessage, IState } from '@/interfaces';
 import {DefaultEventsMap} from 'socket.io-client/build/typed-events';
+import {reducerActions} from '@/actions';
 
 const ChatView: React.FC = () => {
   // Setup Dispatch for add messages
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<Dispatch<reducerActions>>();
+  /** History */
+  const history = useHistory();
 
   // Username from store
   const { username } = useSelector((state: IState) => ({
@@ -33,7 +38,9 @@ const ChatView: React.FC = () => {
       });
       scrollToBottom();
     });
-
+    return () => {
+      socketRef.current?.disconnect();
+    }
   }, []);
 
   // Ref To scrollToBottom
@@ -49,6 +56,15 @@ const ChatView: React.FC = () => {
     socketRef.current?.emit('sendMessage', message);
   };
 
+  /** Logout User */
+  const logout = () => {
+    dispatch({
+      type: 'SET_USERNAME',
+      payload: 'Guess',
+    });
+    history.push({ pathname: '/' });
+  }
+
   return (
     <div className="w-screen h-screen">
       {/* Chat Container */}
@@ -56,6 +72,7 @@ const ChatView: React.FC = () => {
         <ChatHeader
           className="flex-grow-0 text-white bg-indigo-700"
           username={username}
+          onLogout={logout}
         />
         <ChatFlow ref={chatFlowRef} className="flex-grow" />
         <ChatActions

@@ -2,7 +2,7 @@ import { reducerActions } from '@/actions';
 import { IState } from '@/interfaces';
 
 const initialState: IState = {
-  username: 'Guess',
+  username: '',
   messages: [],
 };
 

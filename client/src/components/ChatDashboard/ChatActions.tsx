@@ -27,6 +27,7 @@ const ChatActions: React.FC<ChatActionsProps> = ({
 
   const sendMsg = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (msgInput.length === 0) return;
     const data = { username: username, msg: msgInput };
     onSendMessage(data);
     setMsgInput('');
@@ -36,7 +37,7 @@ const ChatActions: React.FC<ChatActionsProps> = ({
     <div className={className}>
       <form className="flex p-2" onSubmit={sendMsg}>
         <MsgInput value={msgInput} onChange={msgInputHandler} />
-        <MsgSendBtn className="ml-2" />
+        <MsgSendBtn className="ml-2" disabled={msgInput.length === 0}/>
       </form>
     </div>
   );

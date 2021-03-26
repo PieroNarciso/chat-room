@@ -9,7 +9,7 @@ const MsgSendBtn: React.FC<
   return (
     <button
       className={
-        'rounded-full bg-indigo-700 pl-2 pr-1 flex items-center justify-center shadow hover:bg-indigo-600 focus:outline-none' +
+        'rounded-full bg-indigo-700 pl-2 pr-1 flex items-center justify-center shadow hover:bg-indigo-600 focus:outline-none disabled:opacity-70' +
         ' ' +
         className
       }
