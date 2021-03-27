@@ -15,8 +15,9 @@ const ChatActions: React.FC<ChatActionsProps> = ({
   onSendMessage,
 }) => {
   // Setup Store `username`
-  const { username } = useSelector((state: IState) => ({
+  const { username, avatarColor } = useSelector((state: IState) => ({
     username: state.username,
+    avatarColor: state.avatarColor
   }));
   
   // Handle User Input
@@ -28,7 +29,7 @@ const ChatActions: React.FC<ChatActionsProps> = ({
   const sendMsg = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (msgInput.length === 0) return;
-    const data = { username: username, msg: msgInput };
+    const data = { username: username, msg: msgInput, avatarColor };
     onSendMessage(data);
     setMsgInput('');
   };

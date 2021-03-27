@@ -1,4 +1,5 @@
 import { IMessage } from '@/interfaces';
+import { avatarColors } from '@/types';
 
 export interface addMessage {
   type: 'ADD_MESSAGE';
@@ -10,4 +11,9 @@ export interface setUsername {
   payload: string;
 }
 
-export type reducerActions = addMessage | setUsername;
+export interface setAvatarColor {
+  type: 'SET_AVATAR_COLOR';
+  payload: avatarColors;
+}
+
+export type reducerActions = addMessage | setUsername | setAvatarColor;

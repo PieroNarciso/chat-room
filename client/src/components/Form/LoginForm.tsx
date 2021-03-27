@@ -6,6 +6,7 @@ import { reducerActions } from '@/actions';
 import PInput from '@/components/base/PInput';
 import PBtn from '@/components/base/PBtn';
 import { useHistory } from 'react-router';
+import {getRandomAvatarColor} from '@/helpers';
 
 const LoginForm: React.FC<
   React.DetailedHTMLProps<React.HTMLProps<HTMLDivElement>, HTMLDivElement>
@@ -31,6 +32,10 @@ const LoginForm: React.FC<
     dispatch({
       type: 'SET_USERNAME',
       payload: username,
+    });
+    dispatch({
+      type: 'SET_AVATAR_COLOR',
+      payload: getRandomAvatarColor()
     });
     setUsername('');
     history.push({ pathname: 'chat' });

@@ -8,19 +8,29 @@ interface ChatFlowProps {
   className?: string;
 }
 
-const ChatFlow = React.forwardRef<HTMLDivElement, ChatFlowProps>(({ className }, ref) => {
-  const { messages, username } = useSelector((state: IState) => { 
-    return { messages: state.messages, username: state.username }
-  })
+const ChatFlow = React.forwardRef<HTMLDivElement, ChatFlowProps>(
+  ({ className }, ref) => {
+    const { messages, username } = useSelector((state: IState) => {
+      return {
+        messages: state.messages,
+        username: state.username,
+      };
+    });
 
-  return (
-    <div className={'overflow-auto' + ' ' + className} ref={ref}>
-      {messages.map((msg, index) => (
-        <ChatMsg key={index} username={msg.username} message={msg.msg} left={msg.username !== username} />
-      ))}
-    </div>
-  );
-});
-
+    return (
+      <div className={'overflow-auto' + ' ' + className} ref={ref}>
+        {messages.map((msg, index) => (
+          <ChatMsg
+            key={index}
+            username={msg.username}
+            message={msg.msg}
+            left={msg.username !== username}
+            color={msg.avatarColor}
+          />
+        ))}
+      </div>
+    );
+  }
+);
 
 export default ChatFlow;

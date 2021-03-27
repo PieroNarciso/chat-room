@@ -22,6 +22,7 @@ const ChatView: React.FC = () => {
     username: state.username,
   }));
 
+
   // Setup Message Socket
   const socketRef = useRef<Socket<DefaultEventsMap, DefaultEventsMap>>();
   useEffect(() => {
@@ -38,6 +39,9 @@ const ChatView: React.FC = () => {
       });
       scrollToBottom();
     });
+
+    // Scroll to Bottom on Load
+    scrollToBottom();
     return () => {
       socketRef.current?.disconnect();
     }
